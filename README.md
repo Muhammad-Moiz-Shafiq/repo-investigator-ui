@@ -1,36 +1,53 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Autonomous Repository Investigator — Frontend
 
-## Getting Started
+Frontend for a research project studying whether an AI agent investigating a software
+repository's history does better with a small set of curated tools or open access to run
+its own code. Full background is in `HANDOFF.md`.
 
-First, run the development server:
+Three views:
+
+- `/ask` — pick a repo, model, and question, and watch the curated-tools agent
+  investigate it live.
+- `/compare` — replay saved traces from the study, curated-tools vs. open-sandbox,
+  side by side.
+- `/findings` — the study's headline quality and cost results.
+
+## Stack
+
+Next.js (App Router) with TypeScript, Tailwind CSS, and shadcn/ui. Light, dark, and
+system theme support via `next-themes`.
+
+## Local development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The app talks to the backend over HTTP using `NEXT_PUBLIC_API_BASE_URL`. Set it in a
+local `.env.local` file:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+NEXT_PUBLIC_API_BASE_URL=http://localhost:8000
+```
 
-## Learn More
+If it's not set, it defaults to `http://localhost:8000`. If the backend is unreachable
+or an endpoint isn't implemented yet, the Compare and Findings views fall back to
+bundled mock data matching the real API shapes, so the UI stays usable during
+development.
 
-To learn more about Next.js, take a look at the following resources:
+## Deployment
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+This repo deploys to Vercel as its own project, separate from the backend. See below
+for the full procedure.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Project structure
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `src/app` — pages (`/`, `/ask`, `/compare`, `/findings`)
+- `src/components` — shared UI, including `trace-step.tsx` and `trace-view.tsx`,
+  which render an agent's step-by-step reasoning trace
+- `src/lib/api.ts` — backend API client
+- `src/lib/types.ts` — API request/response types, matching the backend contract
+- `src/lib/mock-data.ts` — fallback data used when the backend is unavailable
