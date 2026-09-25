@@ -128,3 +128,10 @@
     @apply font-sans;
   }
 }
+
+/* Allow individual select items to opt into multi-line text via an inline style. */
+[data-slot="select-item"][style*="white-space: normal"] > div:first-child {
+  white-space: normal;
+  flex-shrink: 1;
+  min-width: 0;
+}

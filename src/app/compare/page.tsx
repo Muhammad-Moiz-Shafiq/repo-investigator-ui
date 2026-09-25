@@ -125,12 +125,23 @@ export default function ComparePage() {
           <label className="text-sm font-medium">Question</label>
           <Select value={questionId} onValueChange={(v) => v && setQuestionId(v)}>
             <SelectTrigger className="w-full">
-              <SelectValue />
+              <SelectValue className="truncate">
+                {() =>
+                  questions.find((q) => q.id === questionId)?.question ?? "Select a question"
+                }
+              </SelectValue>
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent
+              alignItemWithTrigger={false}
+              style={{ width: "min(28rem, 90vw)" }}
+            >
               {questions.map((q) => (
-                <SelectItem key={q.id} value={q.id}>
-                  {q.question.length > 70 ? `${q.question.slice(0, 70)}…` : q.question}
+                <SelectItem
+                  key={q.id}
+                  value={q.id}
+                  style={{ whiteSpace: "normal" }}
+                >
+                  {q.question}
                 </SelectItem>
               ))}
             </SelectContent>

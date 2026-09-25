@@ -4,6 +4,8 @@ Frontend for a research project studying whether an AI agent investigating a sof
 repository's history does better with a small set of curated tools or open access to run
 its own code. Full background is in `HANDOFF.md`.
 
+Live at [repo-investigator-ui.vercel.app](https://repo-investigator-ui.vercel.app/).
+
 Three views:
 
 - `/ask` — pick a repo, model, and question, and watch the curated-tools agent
@@ -26,22 +28,16 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
-The app talks to the backend over HTTP using `NEXT_PUBLIC_API_BASE_URL`. Set it in a
-local `.env.local` file:
-
-```
-NEXT_PUBLIC_API_BASE_URL=http://localhost:8000
-```
-
-If it's not set, it defaults to `http://localhost:8000`. If the backend is unreachable
-or an endpoint isn't implemented yet, the Compare and Findings views fall back to
-bundled mock data matching the real API shapes, so the UI stays usable during
-development.
+The app talks to the backend over HTTP using `NEXT_PUBLIC_API_BASE_URL`, set as an
+environment variable. If it's not set, it defaults to `http://localhost:8000` for
+local development against a locally run backend. If the backend is unreachable or an
+endpoint isn't implemented yet, the Compare and Findings views fall back to bundled
+mock data matching the real API shapes, so the UI stays usable during development.
 
 ## Deployment
 
-This repo deploys to Vercel as its own project, separate from the backend. See below
-for the full procedure.
+Deploys to Vercel as its own project, separate from the backend. Push to the
+connected branch to trigger a redeploy.
 
 ## Project structure
 
