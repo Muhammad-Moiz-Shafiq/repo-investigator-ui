@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -18,7 +19,15 @@ export function SiteHeader() {
   return (
     <header className="border-b">
       <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-6">
-        <Link href="/" className="font-medium tracking-tight">
+        <Link href="/" className="flex items-center gap-2 font-medium tracking-tight">
+          <Image src="/dark.png" alt="" width={20} height={20} className="dark:hidden" />
+          <Image
+            src="/light.png"
+            alt=""
+            width={20}
+            height={20}
+            className="hidden dark:block dark:invert"
+          />
           Repo Investigator
         </Link>
         <nav className="flex items-center gap-1">

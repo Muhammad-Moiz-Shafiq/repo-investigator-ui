@@ -1,5 +1,6 @@
 import { AlertTriangle, ArrowRight, CheckCircle2, Wrench } from "lucide-react";
 
+import { Markdown } from "@/components/markdown";
 import { cn } from "@/lib/utils";
 import type { TraceStep as TraceStepData } from "@/lib/types";
 
@@ -67,7 +68,9 @@ export function TraceStep({ step }: { step: TraceStepData }) {
           {prettyPrint(step.content)}
         </pre>
       ) : (
-        <p className="mt-2 text-sm leading-relaxed">{step.content}</p>
+        <div className="mt-2 text-sm">
+          <Markdown>{step.content}</Markdown>
+        </div>
       )}
     </div>
   );

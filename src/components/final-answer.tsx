@@ -1,5 +1,7 @@
 import { CheckCircle2, HelpCircle } from "lucide-react";
 
+import { Markdown } from "@/components/markdown";
+
 export function FinalAnswer({
   answer,
   converged,
@@ -26,7 +28,9 @@ export function FinalAnswer({
         <CheckCircle2 className="size-4" />
         Final answer
       </div>
-      <p className="text-base leading-relaxed">{answer}</p>
+      <div className="text-base">
+        <Markdown>{answer}</Markdown>
+      </div>
     </div>
   );
 }
