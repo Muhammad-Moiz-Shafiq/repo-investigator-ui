@@ -6,13 +6,19 @@ its own code. Full background is in `HANDOFF.md`.
 
 Live at [repo-investigator-ui.vercel.app](https://repo-investigator-ui.vercel.app/).
 
+This is the demo of the pilot study (September 2026). The full study that followed is written up at
+[mmoiz.dev/blog/ai-agents-curated-tools-or-open-code](https://mmoiz.dev/blog/ai-agents-curated-tools-or-open-code),
+and its replication package is at
+[github.com/Muhammad-Moiz-Shafiq/repo-investigator-replication](https://github.com/Muhammad-Moiz-Shafiq/repo-investigator-replication).
+Every page shows a banner that says so, and the findings page is labeled as pilot results.
+
 Three views:
 
 - `/ask` — pick a repo, model, and question, and watch the curated-tools agent
   investigate it live.
 - `/compare` — replay saved traces from the study, curated-tools vs. open-sandbox,
   side by side.
-- `/findings` — the study's headline quality and cost results.
+- `/findings` — the pilot's headline quality and cost results, labeled as pilot results.
 
 ## Stack
 

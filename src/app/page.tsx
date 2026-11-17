@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { MAIN_STUDY_URL } from "@/lib/study";
 
 const LINKS = [
   {
@@ -17,25 +18,41 @@ const LINKS = [
   {
     href: "/findings",
     title: "Findings",
-    description: "The study's headline results: which approach produced better answers, and at what cost.",
+    description: "The pilot's results: which approach produced better answers, and at what cost.",
   },
 ];
 
 export default function Home() {
   return (
     <div className="mx-auto max-w-3xl px-6 py-20">
-      <p className="text-sm font-medium text-muted-foreground">Research project</p>
+      <p className="text-sm font-medium text-muted-foreground">Research project, pilot demo</p>
       <h1 className="mt-3 text-4xl font-semibold tracking-tight">
         Autonomous Repository Investigator
       </h1>
       <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted-foreground">
         An AI agent that investigates a repository&apos;s commits, pull requests, issues, and CI
-        runs to answer open-ended questions about it — and cites its evidence the way an engineer
+        runs to answer open-ended questions about it, and cites its evidence the way an engineer
         would.
       </p>
       <p className="mt-4 max-w-xl leading-relaxed text-muted-foreground">
-        Across six models and three real repositories, giving the agent a small set of curated
-        tools beat giving it open access to write and run its own code, for every model tested.
+        In this pilot, across six models and three real repositories, giving the agent a small
+        set of curated tools beat giving it open access to write and run its own code, for every
+        model tested.
+      </p>
+      <p className="mt-4 max-w-xl leading-relaxed text-muted-foreground">
+        The full study that followed tested five models on 63 questions about six repositories,
+        with tools at four levels of coverage. It found that curated tools help mainly when they
+        apply the project&apos;s definitions, and that open code did about as well as generic
+        query tools.{" "}
+        <a
+          href={MAIN_STUDY_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-medium text-foreground underline underline-offset-4"
+        >
+          Read about the full study
+        </a>
+        .
       </p>
 
       <div className="mt-10 flex gap-3">

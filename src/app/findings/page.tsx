@@ -1,16 +1,36 @@
 import { Card } from "@/components/ui/card";
 import { getFindings } from "@/lib/api";
+import { MAIN_STUDY_URL } from "@/lib/study";
 
 export default async function FindingsPage() {
   const findings = await getFindings();
 
   return (
     <div className="mx-auto max-w-4xl px-6 py-16">
-      <h1 className="text-3xl font-semibold tracking-tight">Findings</h1>
+      <p className="text-sm font-medium text-muted-foreground">Pilot study, September 2026</p>
+      <h1 className="mt-2 text-3xl font-semibold tracking-tight">Pilot findings</h1>
       <p className="mt-2 text-muted-foreground">
-        Six models, three repositories, five investigative questions. Here is what the study
-        found.
+        These are the results of the pilot study: six models, three repositories, five
+        investigative questions. Here is what the pilot found.
       </p>
+
+      <div className="mt-6 rounded-lg border bg-muted/40 p-4 text-sm leading-relaxed text-muted-foreground">
+        <p>
+          <span className="font-medium text-foreground">These are pilot results.</span> The pilot
+          was small, each question ran once, a single AI judge gave each answer a score out of 8,
+          and some answer keys were adjusted after seeing runs. Read these numbers as
+          preliminary. The full study fixed these problems and is the one to cite.{" "}
+          <a
+            href={MAIN_STUDY_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-medium text-foreground underline underline-offset-4"
+          >
+            Read about the full study
+          </a>
+          .
+        </p>
+      </div>
 
       <div className="mt-8 grid gap-4 sm:grid-cols-2">
         <Card className="p-6">
@@ -30,11 +50,12 @@ export default async function FindingsPage() {
       </div>
 
       <p className="mt-6 max-w-2xl leading-relaxed text-muted-foreground">
-        The curated-tools variant produced better answers than the open-sandbox variant for every
+        In the pilot, the curated-tools variant produced better answers than the open-sandbox variant for every
         one of the six models tested, though the size of the gap varied a lot by model. Giving an
         agent a small number of purpose-built tools that return clean, pre-computed results
-        appears to outperform giving it open access to write and run its own code against the
-        same data.
+        appeared to outperform giving it open access to write and run its own code against the
+        same data. The full study showed that this depends on how much of the question the tools
+        cover.
       </p>
 
       <h2 className="mt-12 text-lg font-medium">By model</h2>
